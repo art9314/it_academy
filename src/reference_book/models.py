@@ -1,6 +1,6 @@
-from msilib.schema import ServiceInstall
+
 from tabnanny import verbose
-from unittest.util import _MAX_LENGTH
+
 from django.db import models
 
 # Create your models here.
@@ -11,25 +11,41 @@ class Author(models.Model):
     description = models.TextField(blank=True,null=True)
     def __str__(self):
         return self.name
-
+    def __repr__(self):
+        return self.name
+    def get_absolute_url(self):
+        return f'/rb/{self.pk}/'        
             
 class Series(models.Model):
     name = models.CharField(max_length = 50)
     number_series = models.IntegerField(blank=True,null=True)
     def __str__(self):
         return self.name
-
+    def __repr__(self):
+        return self.name
+    def get_absolute_url(self):
+        return f'/rb/{self.pk}/'    
 
 class Genre(models.Model):        
     name = models.CharField(max_length = 50)
     def __str__(self):
         return self.name
-
-
-class Publishing(models.Model):             
-   name = models.CharField(max_length = 50)
-   def __str__(self):
+    def __repr__(self):
         return self.name
+    def get_absolute_url(self):
+        return f'/rb/{self.pk}/'   
+
+class Publishing(models.Model):
+    name = models.CharField(max_length = 50)
+    def __str__(self):
+        return self.name
+    def __repr__(self):
+        return self.name
+    def get_absolute_url(self):
+        return f'/rb/{self.pk}/'           
+   
+    
+
 
 
    
