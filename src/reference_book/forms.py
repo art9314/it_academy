@@ -21,5 +21,5 @@ class AuthorForm(forms.ModelForm):
             date_of_death=cleaned_data.get('date_of_death')
             if date_of_death<date_of_birth:
                 self.add_error('date_of_birth','< than date_of_death')
-                self.add_error('date_of_birth','> than date_of_birth')
+                self.add_error('date_of_death','> than date_of_birth')
             return cleaned_data
