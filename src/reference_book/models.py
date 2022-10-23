@@ -2,6 +2,7 @@
 from tabnanny import verbose
 
 from django.db import models
+from django.urls import reverse_lazy
 
 # Create your models here.
 class Author(models.Model):
@@ -14,7 +15,9 @@ class Author(models.Model):
     def __repr__(self):
         return self.name
     def get_absolute_url(self):
-        return f'/rb/{self.pk}/'        
+        return reverse_lazy('reference_book:author-detail', kwargs = {'pk': self.pk})
+        #return f'/rb/{self.pk}/'
+                
             
 class Series(models.Model):
     name = models.CharField(max_length = 50)
@@ -24,7 +27,8 @@ class Series(models.Model):
     def __repr__(self):
         return self.name
     def get_absolute_url(self):
-        return f'/rb/{self.pk}/'    
+        return reverse_lazy('reference_book:series-detail', kwargs = {'pk': self.pk})
+           
 
 class Genre(models.Model):        
     name = models.CharField(max_length = 50)
@@ -33,7 +37,8 @@ class Genre(models.Model):
     def __repr__(self):
         return self.name
     def get_absolute_url(self):
-        return f'/rb/{self.pk}/'   
+        return reverse_lazy('reference_book:genre-detail', kwargs = {'pk': self.pk})
+          
 
 class Publishing(models.Model):
     name = models.CharField(max_length = 50)
@@ -42,7 +47,8 @@ class Publishing(models.Model):
     def __repr__(self):
         return self.name
     def get_absolute_url(self):
-        return f'/rb/{self.pk}/'           
+        return reverse_lazy('reference_book:publishing-detail', kwargs = {'pk': self.pk})
+                  
    
     
 

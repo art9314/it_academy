@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv='X-UA-Compatible' content= 'chrome=1'>
 <meta name ='viewport' content='width=device-width,initial-scale=1.0'>
-<title>list reference_book</title> 
+<title>list_genre reference_book</title> 
 
 
 </head>
@@ -13,9 +13,9 @@
     <table border ='1'>
         {% for obj in object_list %}
         <tr>
-            <td><a href="{% url 'reference_book:author-update' pk=obj.pk %}">{{obj.pk}} </a></td>
-            <td>{{obj.name}} {{obj.date_of_birth}} {{obj.date_of_death}}</td>
-            <td><a href= "{% url 'reference_book:author-delete' pk=obj.pk %}">DELETE </a></td>
+            <td><a href="{% url 'reference_book:genre-update' pk=obj.pk %}">{{obj.pk}} </a></td>
+            <td>{{obj.name}}</td>
+            <td><a href= "{% url 'reference_book:genre-delete' pk=obj.pk %}">DELETE </a></td>
         </tr>
         {% endfor %}
     </table>
