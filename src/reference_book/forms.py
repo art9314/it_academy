@@ -12,7 +12,7 @@ def name_validator(value:str):
 class AuthorForm(forms.ModelForm):
     class Meta:
         model=models.Author
-        fields=['name','date_of_birth','date_of_death','description' ]
+        fields=['name','logo','date_of_birth','date_of_death','description' ]
         
         
     def clean(self):

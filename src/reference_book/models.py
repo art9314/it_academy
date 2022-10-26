@@ -6,7 +6,10 @@ from django.urls import reverse_lazy
 
 # Create your models here.
 class Author(models.Model):
-    name = models.CharField(max_length = 50)
+    name = models.CharField(max_length = 50,verbose_name ='Group name')
+    logo = models.ImageField(verbose_name='Logotip',upload_to = 'uploads/%Y/%m/%d/')   
+    
+
     date_of_birth = models.DateField()
     date_of_death = models.DateField()
     description = models.TextField(blank=True,null=True)

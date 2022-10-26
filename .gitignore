@@ -104,6 +104,8 @@ envname/
 .env
 .venv
 env/
+static/
+media/
 venv/
 ENV/
 env.bak/
