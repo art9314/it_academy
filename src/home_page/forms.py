@@ -10,7 +10,7 @@ class UserForm(UserCreationForm):
     city = forms.CharField(required=True, max_length=40)
     address = forms.CharField(required=True, max_length=50)
     index = forms.IntegerField(required=True)      
-    phone = forms.IntegerField(required=True, help_text="Enter the number in international format.")
+    phone = forms.IntegerField(required=True, help_text="Enter the number.")
     reserve_address = forms.CharField(required=False, max_length=50)
     additional_info = forms.CharField(required=False, max_length=200)
 
