@@ -21,7 +21,7 @@ class CreateProdCard(generic.CreateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        context['cu_name'] = 'Create'
+        context['crup_name'] = 'Create'
         return context
 
 
@@ -32,7 +32,7 @@ class UpdateProdCard(generic.UpdateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        context['cu_name'] = 'Update'
+        context['crup_name'] = 'Update'
         return context
 
 

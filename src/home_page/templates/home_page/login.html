@@ -1,6 +1,9 @@
 {% extends "base.html" %}
-{% load crispy_forms_tags %}
+
 {% block content %} 
+
+{% load crispy_forms_tags %}         
+
 
 <div class="container py-5">
 	<h1>Login</h1>
@@ -14,7 +17,7 @@
         {% endif %}
 		{% csrf_token %}
 		{{ login_form|crispy }}                    
-		<button class="btn btn-primary" type="submit">Login</button>
+		<button class="btn btn-primary" type="submit">Log in</button>
 	</form>
 	<p class="text-center">Still not registered? <a href="/register">Sign up</a> now.</p>
 </div>
