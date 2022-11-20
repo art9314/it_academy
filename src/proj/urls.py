@@ -18,12 +18,15 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
+from catalog.views import SearchResultView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('s-admin/', admin.site.urls),
     path('refs/', include ('reference_book.urls', namespace = 'reference_book')),
     path('', include ('home_page.urls', namespace = 'home_page')),
     path('prod_card/', include('prod_card.urls', namespace='prod_card')),
+    path('catalog/', include('catalog.urls', namespace="catalog")),
+    path('search/', SearchResultView.as_view(), name='search_results'),
     
 ] 
 if settings.DEBUG:

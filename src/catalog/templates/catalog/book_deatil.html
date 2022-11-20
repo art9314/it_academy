@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ object.name }}
+{% endblock title %}
+
+{% block content %}
+<div class="shadow p-3 mb-5 bg-body rounded">
+    <div class="text-center">
+        <h2>{{ book.name }}</h2>
+    </div>
+</div>
+<div class="shadow p-3 mb-5 bg-body rounded">
+    <hr class="featurette-divider">
+    <div class="row featurette">
+        <div class="col-md-7 order-md-2">
+        <h2 class="featurette-heading fw-normal lh-1">{{ book.name }}</h2><br>
+        <h4 class="featurette-heading fw-normal lh-1" >Price:<span class="text-muted"><em> {{ book.price }} BYN</h4></em>
+        <h4 class="featurette-heading fw-normal lh-1" >Author:<span class="text-muted"><em> {% for author in book.author.all %}{{ author }} {% endfor %}</h4></em>
+        <h4 class="featurette-heading fw-normal lh-1" >Series:<span class="text-muted"><em> {{ book.series }}</h4></em>
+        <h4 class="featurette-heading fw-normal lh-1" >Genre:<span class="text-muted"><em> {% for genre in book.genre.all %}{{ genre }} {% endfor %}</h4></em>
+        <h4 class="featurette-heading fw-normal lh-1" >Year:<span class="text-muted"><em> {{ book.publishing_year }}</h4></em>
+        <h4 class="featurette-heading fw-normal lh-1" >Pages:<span class="text-muted"><em> {{ book.pages }}</h4></em>
+        <h4 class="featurette-heading fw-normal lh-1" >Binding:<span class="text-muted"><em> {{ book.binding }}</h4></em>
+        <h4 class="featurette-heading fw-normal lh-1" >Format:<span class="text-muted"><em> {{ book.format }}</h4></em>
+        <h4 class="featurette-heading fw-normal lh-1" >ISBN:<span class="text-muted"><em> {{ book.isbn }}</h4></em>
+        <h4 class="featurette-heading fw-normal lh-1" >Weight:<span class="text-muted"><em> {{ book.weight }} gr</h4></em>
+        <h4 class="featurette-heading fw-normal lh-1" >Age restriction:<span class="text-muted"><em> {{ book.age_restriction }}</h4></em>
+        <h4 class="featurette-heading fw-normal lh-1" >Publisher:<span class="text-muted"><em> {{ book.publishing }}</h4></em>
+        <h4 class="featurette-heading fw-normal lh-1" >Books available:<span class="text-muted"><em> {{ book.available_books }} pcs</h4></em>
+        <h4 class="featurette-heading fw-normal lh-1" >Available for purchase:<span class="text-muted"><em> {{ book.activity }}</h4></em>
+        <h4 class="featurette-heading fw-normal lh-1" >Rating:<span class="text-muted"><em> {{ book.rating }}</h4></em>
+        
+        <br>
+        <h5 class="featurette-heading fw-normal lh-1" ><span class="text-muted"> {{ book.description }}</h5>
+      </div>
+      <div class="col-md-5 order-md-1">
+        <img src="{{ book.image.url }}" width="500" height="500" border="1">
+      </div>
+    </div>
+    <h6 class="featurette-heading fw-normal lh-1" >Changed:<span class="text-muted"><em> {{ book.modification_date }}</h6></em><br>
+
+    <td><a href="{% url 'catalog:catalog' %}" class="btn btn-outline-secondary mb-3" onclick="history.go(-1); return false;">Cancel</a></td>     <td><a href="#" class="btn btn-outline-success mb-3">Add to cart</a></td>
+    <hr>
+    </div>
+    <div class="card my-4">
+      <h5 class="card-header">Leave the comment:</h5>
+      {% if user.is_authenticated %}
+      <div class="card-body">
+          <form method="post">
+              {% csrf_token %}
+              <div class="form-group">
+                  {{ comment_form.text }}
+              </div>
+              <br><button type="submit" class="btn btn-outline-primary">Save comment</button>
+          </form>
+      </div>
+      {% else %}
+      <h6 class="card-header"><a href="{% url 'home_page:login' %}">Login</a> or <a href="{% url 'home_page:register' %}">sign up</a> to leave the comment.</h6>
+      {% endif %}
+    </div>
+    {% for comment in book.comments.all %}
+    <div class="media mb-4">
+      <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+      <div class="media-body">
+        <div class="shadow p-3 mb-5 bg-body rounded">
+          <h5 class="mt-0">{{comment.username}}</h5>
+          {{comment.text}}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+
+
+{% endblock content %}

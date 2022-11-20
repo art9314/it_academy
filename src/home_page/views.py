@@ -6,8 +6,6 @@ from django.contrib import messages
 from .forms import UserForm
 from django.contrib.auth.forms import AuthenticationForm
 from reference_book.models import Author
-
-
 def login_request(request):
 
     if request.method == "POST":
@@ -19,8 +17,14 @@ def login_request(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                messages.info(request, f"You are logged in as {username}.")
-                return HttpResponseRedirect('/')
+                messages.info(request, f"Logged in as {username}.")
+                next_param = request.POST.get('next')
+                if next_param:
+                    url = next_param
+                else:
+                    url = '/'
+                return HttpResponseRedirect(url)
+                #return HttpResponseRedirect('/')
             else:
                 messages.error(request,"The username or password you entered is incorrect.")
         else:
@@ -45,8 +49,8 @@ def register_request(request):
 
 def logout_request(request):    
 	logout(request)
-	messages.info(request, "You are logged out.") 
-	return HttpResponseRedirect('/')
+	messages.info(request, "Logged out.") 
+	return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 class HomePage(generic.TemplateView):
     template_name = 'home_page/home_page.html'
@@ -56,7 +60,6 @@ class HomePage(generic.TemplateView):
         context['books'] = Author.objects.get(pk=4)
         context['books1'] = Author.objects.get(pk=5)
         context['books2'] = Author.objects.get(pk=3)
-
         return context
  
  

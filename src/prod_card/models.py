@@ -9,7 +9,7 @@ from django.core.exceptions import ValidationError
 
 # Create your models here.
 
-class Books (models.Model):
+class Books(models.Model):
     name = models.CharField(
        max_length=60,
        verbose_name="Book name")
