@@ -12,7 +12,7 @@ Product card view
 </div>
     Card name: <b>"{{ object.name }}"</b><br>
     <br>
-    <td><a href="{% url 'prod_card:pc_create' %}" class="btn btn-outline-success mb-3">Create product card</a></td>
+    <td><a href="{% url 'prod_card:prod_card_create' %}" class="btn btn-outline-success mb-3">Create product card</a></td>
     <br>
     <td><a href="{% url 'prod_card:prod_card_list' %}" class="btn btn-outline-success mb-3">Show the list of product cards</a></td>
 {% endblock content %}

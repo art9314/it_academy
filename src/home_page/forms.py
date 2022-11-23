@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, ReadOnlyPasswordHashField
 from catalog.models import AppUser
 from django.core.exceptions import ValidationError
+from django.db import models
 
 
 #Django Admin 
@@ -75,6 +76,7 @@ class UserForm(UserCreationForm):
     address = forms.CharField(required=True, max_length=60)
     reserve_address = forms.CharField(required=False, max_length=60)
     additional_info = forms.CharField(required=False, max_length=150)
+  
 
     class Meta:
         model = AppUser
@@ -91,7 +93,8 @@ class UserForm(UserCreationForm):
             "reserve_address",  
             "password1", 
             "password2", 
-            "additional_info"
+            "additional_info",
+           
             )
 
     def save(self, commit=True):
@@ -105,6 +108,7 @@ class UserForm(UserCreationForm):
         user.address = self.cleaned_data['address']
         user.reserve_address = self.cleaned_data['reserve_address']
         user.additional_info = self.cleaned_data['additional_info']
+       
         if commit:
             user.save()
         return user

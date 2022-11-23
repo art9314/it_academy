@@ -21,7 +21,7 @@ from django.contrib.auth import views as auth_views
 from catalog.views import SearchResultView
 
 urlpatterns = [
-    path('s-admin/', admin.site.urls),
+    path('admin/', admin.site.urls),
     path('refs/', include ('reference_book.urls', namespace = 'reference_book')),
     path('', include ('home_page.urls', namespace = 'home_page')),
     path('prod_card/', include('prod_card.urls', namespace='prod_card')),

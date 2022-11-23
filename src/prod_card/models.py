@@ -92,7 +92,7 @@ class Books(models.Model):
     
 
     def get_absolute_url(self):
-        return reverse_lazy('prod_card:detail', kwargs={'pk': self.pk})
+        return reverse_lazy('prod_card:prod_card_detail', kwargs={'pk': self.pk})
 
     def clean(self):
         if str(self.date_of_addition) > str(date.today()):
