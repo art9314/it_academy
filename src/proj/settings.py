@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'reference_book',
     'prod_card',
     'home_page',
-    "catalog"
+    "catalog",
+    "carts",
+    "order"
 
 ]
 

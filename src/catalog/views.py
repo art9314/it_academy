@@ -1,4 +1,4 @@
-from django.shortcuts import render
+
 
 # Create your views here.
 from django.shortcuts import render
@@ -59,9 +59,9 @@ class SearchResultView(View):
     def get(self, request, *args, **kwargs):
         query = self.request.GET.get('q')
         results = ''
-        if query:
+        if query:            
             results = Books.objects.filter(
-                Q(author__name__icontains=query) | Q(name__icontains=query) | Q(author__surname__icontains=query) | Q(genre__genre_name__icontains=query) | Q(series__book_series__icontains=query)
+                Q(author__name__icontains=query) | Q(name__icontains=query) | Q(author__surname__icontains=query) | Q(genre__name__icontains=query) | Q(series__name__icontains=query)
             ).distinct()
         paginator = Paginator(results, 12)
         page_number = request.GET.get('page')

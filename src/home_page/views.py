@@ -6,6 +6,7 @@ from django.contrib import messages
 from .forms import UserForm
 from django.contrib.auth.forms import AuthenticationForm
 from reference_book.models import Author
+from prod_card.models import Books
 def login_request(request):
 
     if request.method == "POST":
@@ -36,16 +37,24 @@ def login_request(request):
 def register_request(request):
     if request.method == "POST":
         form = UserForm(request.POST)
-        print(form.errors)
+        
         if form.is_valid():
             user = form.save()
             login(request, user)
-            messages.success(request, "Registration was successful.")
-            return HttpResponseRedirect('/')
+            next_param = request.POST.get('next')
+            if next_param:
+                url = next_param
+            else:
+                url = '/'
+            return HttpResponseRedirect(url)
+            #return HttpResponseRedirect('/')
         else:
+            messages.error(request, "Registration failed.Enter correct data.")
+    else:
             messages.error(request, "Registration failed.Enter correct data.")
     form = UserForm()
     return render (request=request, template_name="home_page/register.html", context={"register_form":form})
+       
 
 def logout_request(request):    
 	logout(request)
@@ -57,9 +66,9 @@ class HomePage(generic.TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)               
-        context['books'] = Author.objects.get(pk=4)
-        context['books1'] = Author.objects.get(pk=5)
-        context['books2'] = Author.objects.get(pk=3)
+        #context['books'] = Books.objects.get(pk=4)
+        context['books1'] = Books.objects.get(pk=2)
+        context['books2'] = Books.objects.get(pk=1)
         return context
  
  

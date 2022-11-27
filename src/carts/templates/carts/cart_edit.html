@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}Your cart{% endblock %}
+
+{% block content %}
+    <div>
+        <div class="shadow p-3 mb-5 bg-body rounded">
+        <div class="text-center">
+        <h1>Your cart</h1>
+        </div>
+        </div>
+        <td><a href="{% url 'catalog:catalog' %}" class="btn btn-outline-secondary mb-3">Cancel</a></td>
+        <div class="shadow p-3 mb-5 bg-body rounded">
+            <form class="update" action="{% url 'carts:cart_update' %}" method="post">
+                {% csrf_token %}
+            <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Position</th>
+                    <th scope="col">Good</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Options</th>
+                </tr>
+            </thead>
+        </div>
+            {% for good_in_cart in object.goods.all %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ good_in_cart.book.name }}</td>
+                <td>
+                    <div class="mb-2">
+                        <input type="number" name="quantityforgood_{{good_in_cart.pk}}" min="1" step="1" class="form-control" value="{{good_in_cart.quantity}}">
+                    </div>
+                </td>
+                <td>{{ good_in_cart.total_price }}</td>
+            </form>
+                <td><a href="{% url 'carts:delete_good_in_cart' pk=good_in_cart.pk %}" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#id{{good_in_cart.pk}}">Delete</a>
+                    <div class="modal fade" id="id{{good_in_cart.pk}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h1 class="modal-title fs-5" id="exampleModalLabel">Are you sure that you want to delete the book from the cart?</h1>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Book <b>"{{ good_in_cart.book.name }}"</b> - <b>{{ good_in_cart.quantity }} pcs.</b> will be permanently deleted from the list.
+                                <br>
+                                <form action="{% url 'carts:delete_good_in_cart' pk=good_in_cart.pk %}" method="post">
+                                    {% csrf_token %}
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <input type="submit" value="Delete" class="btn btn-danger">
+                                </form>
+                            </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="3">Total</td>
+                <td>{{ object.total_price_cart }}</td>
+                <td></td>
+            </tr>
+        </table>
+            <button type="submit" name="submit" class="btn btn-outline-primary" value="save_cart">Save changes</button>
+            {% if user.is_authenticated %}
+            <button type="submit" name="submit" class="btn btn-outline-success" value="create_order">Order</button>
+        </form>
+    </div>
+    {% else %}
+    <td><a href="{% url 'home_page:register' %}?next={{ request.path }}" class="btn btn-outline-success">Order</a></td>
+        {% endif %}
+</div>
+</form>
+{% endblock %}

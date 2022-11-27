@@ -27,7 +27,8 @@ urlpatterns = [
     path('prod_card/', include('prod_card.urls', namespace='prod_card')),
     path('catalog/', include('catalog.urls', namespace="catalog")),
     path('search/', SearchResultView.as_view(), name='search_results'),
-    
+    path('carts/', include('carts.urls', namespace="carts")),
+    path('order/', include('order.urls', namespace="order")),
 ] 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -39,8 +39,12 @@
       </div>
     </div>
     <h6 class="featurette-heading fw-normal lh-1" >Changed:<span class="text-muted"><em> {{ book.modification_date }}</h6></em><br>
-
-    <td><a href="{% url 'catalog:catalog' %}" class="btn btn-outline-secondary mb-3" onclick="history.go(-1); return false;">Cancel</a></td>     <td><a href="#" class="btn btn-outline-success mb-3">Add to cart</a></td>
+      <form action="{%url 'carts:cart_edit' %}" method="get">
+        {% csrf_token %}
+      <td><a href="{% url 'catalog:catalog' %}" class="btn btn-outline-secondary mb-3">Cancel</a></td> {% comment %}onclick="history.go(-1); return false; {% endcomment %}
+      <td><button type="submit" class="btn btn-outline-success mb-3">Add to cart</button></td>
+      <input type="hidden" name="book_pk" value="{{ book.pk }}">
+      </form>    
     <hr>
     </div>
     <div class="card my-4">
@@ -56,7 +60,7 @@
           </form>
       </div>
       {% else %}
-      <h6 class="card-header"><a href="{% url 'home_page:login' %}">Login</a> or <a href="{% url 'home_page:register' %}">sign up</a> to leave the comment.</h6>
+      <h6 class="card-header"><a href="{% url 'home_page:login' %}?next={{ request.path }}">Login</a> or <a href="{% url 'home_page:register' %}?next={{ request.path }}">sign up</a> to leave the comment.</h6>
       {% endif %}
     </div>
     {% for comment in book.comments.all %}

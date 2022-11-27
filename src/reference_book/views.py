@@ -10,20 +10,20 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 # Create your views here.
 class ShowAuthors (LoginRequiredMixin, PermissionRequiredMixin,generic.ListView):
     model = models.Author
-    template_name = 'reference_book/list.html'
+    template_name = 'reference_book/list_author.html'
     login_url = 'home_page:login'
     permission_required = 'references.view_bookauthor'
     
 class ShowAuthor (LoginRequiredMixin, PermissionRequiredMixin,generic.DetailView):
     model = models.Author
-    template_name = 'reference_book/detail.html'
+    template_name = 'reference_book/detail_author.html'
     login_url = 'home_page:login'
     permission_required = 'references.view_bookauthor'
 
 class CreateAuthor (LoginRequiredMixin, PermissionRequiredMixin,generic.CreateView):
     model = models.Author
     form_class = forms.AuthorForm
-    template_name = 'reference_book/edit.html' 
+    template_name = 'reference_book/edit_author.html' 
     login_url = 'home_page:login'
     permission_required = 'references.add_bookauthor' 
     def get_context_data(self, *args, **kwargs):
@@ -34,7 +34,7 @@ class CreateAuthor (LoginRequiredMixin, PermissionRequiredMixin,generic.CreateVi
 class UpdateAuthor (LoginRequiredMixin, PermissionRequiredMixin,generic.UpdateView):
     model=models.Author
     form_class = forms.AuthorForm
-    template_name = 'reference_book/edit.html'
+    template_name = 'reference_book/edit_author.html'
     login_url = 'home_page:login'
     permission_required = 'references.change_bookauthor'
     def get_context_data(self, *args, **kwargs):
@@ -44,7 +44,7 @@ class UpdateAuthor (LoginRequiredMixin, PermissionRequiredMixin,generic.UpdateVi
 
 class DeleteAuthor (LoginRequiredMixin, PermissionRequiredMixin,generic.DeleteView):
     model=models.Author
-    template_name = 'reference_book/delete.html'
+    template_name = 'reference_book/delete_author.html'
     login_url = 'home_page:login'
     permission_required = 'references.delete_bookauthor'
     def get_success_url(self):
@@ -58,14 +58,14 @@ class ShowSerie(LoginRequiredMixin, PermissionRequiredMixin,generic.ListView):
 
 class ShowSeries (LoginRequiredMixin, PermissionRequiredMixin,generic.DetailView):
     model = models.Series
-    template_name = 'reference_book/detail.html'
+    template_name = 'reference_book/detail_series.html'
     login_url = 'home_page:login'
     permission_required = 'references.view_bookseries'
 
 class CreateSeries (LoginRequiredMixin, PermissionRequiredMixin,generic.CreateView):
     model = models.Series
     form_class = forms.SeriesForm
-    template_name = 'reference_book/edit.html'
+    template_name = 'reference_book/edit_series.html'
     login_url = 'home_page:login'
     permission_required = 'references.add_bookseries'
     def get_context_data(self, *args, **kwargs):
@@ -76,7 +76,7 @@ class CreateSeries (LoginRequiredMixin, PermissionRequiredMixin,generic.CreateVi
 class UpdateSeries (LoginRequiredMixin, PermissionRequiredMixin,generic.UpdateView):
     model=models.Series
     form_class = forms.SeriesForm
-    template_name = 'reference_book/edit.html'
+    template_name = 'reference_book/edit_series.html'
     login_url = 'home_page:login'
     permission_required = 'references.change_bookseries'
     def get_context_data(self, *args, **kwargs):
@@ -87,7 +87,7 @@ class UpdateSeries (LoginRequiredMixin, PermissionRequiredMixin,generic.UpdateVi
 class DeleteSeries(LoginRequiredMixin, PermissionRequiredMixin,generic.DeleteView):
     model=models.Series
     form_class = forms.SeriesForm
-    template_name = 'reference_book/delete.html'
+    template_name = 'reference_book/delete_series.html'
     login_url = 'home_page:login'
     permission_required = 'references.delete_bookseries'
     def get_success_url(self):
@@ -102,14 +102,14 @@ class ShowGenres(LoginRequiredMixin, PermissionRequiredMixin,generic.ListView):
 
 class ShowGenre (LoginRequiredMixin, PermissionRequiredMixin,generic.DetailView):
     model = models.Genre
-    template_name = 'reference_book/detail.html'
+    template_name = 'reference_book/detail_genre.html'
     login_url = 'home_page:login'
     permission_required = 'references.view_bookgenre'
 
 class CreateGenre (LoginRequiredMixin, PermissionRequiredMixin,generic.CreateView):
     model = models.Genre
     form_class = forms.GenreForm
-    template_name = 'reference_book/edit.html'  
+    template_name = 'reference_book/edit_genre.html'  
     login_url = 'home_page:login'
     permission_required = 'references.add_bookgenre'
     def get_context_data(self, *args, **kwargs):
@@ -120,7 +120,7 @@ class CreateGenre (LoginRequiredMixin, PermissionRequiredMixin,generic.CreateVie
 class UpdateGenre (LoginRequiredMixin, PermissionRequiredMixin,generic.UpdateView):
     model=models.Genre
     form_class = forms.GenreForm
-    template_name = 'reference_book/edit.html'
+    template_name = 'reference_book/edit_genre.html'
     login_url = 'home_page:login'
     permission_required = 'references.change_bookgenre'
     def get_context_data(self, *args, **kwargs):
@@ -131,7 +131,7 @@ class UpdateGenre (LoginRequiredMixin, PermissionRequiredMixin,generic.UpdateVie
 class DeleteGenre(LoginRequiredMixin, PermissionRequiredMixin,generic.DeleteView):
     model=models.Genre
     form_class = forms.GenreForm
-    template_name = 'reference_book/delete.html'
+    template_name = 'reference_book/delete_genre.html'
     login_url = 'home_page:login'
     permission_required = 'references.delete_bookgenre'
     def get_success_url(self):
@@ -139,20 +139,20 @@ class DeleteGenre(LoginRequiredMixin, PermissionRequiredMixin,generic.DeleteView
 
 class ShowPublishings(LoginRequiredMixin, PermissionRequiredMixin,generic.ListView):
     model = models.Publishing
-    template_name = 'reference_book/list_genre.html'
+    template_name = 'reference_book/list_publishing.html'
     login_url = 'home_page:login'
     permission_required = 'references.view_bookpublishing'
 
 class ShowPublishing (LoginRequiredMixin, PermissionRequiredMixin,generic.DetailView):
     model = models.Publishing
-    template_name = 'reference_book/detail.html'
+    template_name = 'reference_book/detail_publishing.html'
     login_url = 'home_page:login'
     permission_required = 'references.view_bookpublishing'
 
 class CreatePublishing (LoginRequiredMixin, PermissionRequiredMixin,generic.CreateView):
     model = models.Publishing
     form_class = forms.PublishingForm
-    template_name = 'reference_book/edit.html' 
+    template_name = 'reference_book/edit_publishing.html' 
     login_url = 'home_page:login'
     permission_required = 'references.add_bookpublishing'
     def get_context_data(self, *args, **kwargs):
@@ -163,7 +163,7 @@ class CreatePublishing (LoginRequiredMixin, PermissionRequiredMixin,generic.Crea
 class UpdatePublishing (LoginRequiredMixin, PermissionRequiredMixin,generic.UpdateView):
     model=models.Publishing
     form_class = forms.PublishingForm
-    template_name = 'reference_book/edit.html'
+    template_name = 'reference_book/edit_publishing.html'
     login_url = 'home_page:login'
     permission_required = 'references.change_bookpublishing'
     def get_context_data(self, *args, **kwargs):
@@ -174,7 +174,7 @@ class UpdatePublishing (LoginRequiredMixin, PermissionRequiredMixin,generic.Upda
 class DeletePublishing(LoginRequiredMixin, PermissionRequiredMixin,generic.DeleteView):
     model=models.Publishing
     form_class = forms.PublishingForm
-    template_name = 'reference_book/delete.html'
+    template_name = 'reference_book/delete_publishing.html'
     login_url = 'home_page:login'
     permission_required = 'references.delete_bookpublishing'
 

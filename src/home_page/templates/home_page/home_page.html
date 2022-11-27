@@ -25,17 +25,15 @@
                 <a class="nav-link active" aria-current="page" href="/catalog">Catalog</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="">Authors</a>
+                <a class="nav-link active" href="/refs/rb/">Authors</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="">Genres</a>
+                <a class="nav-link active" href="/refs/rb-genre/">Genres</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="">Publishing</a>
+                <a class="nav-link active" href="/refs/rb-Publishing/">Publishing</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="/login">Order</a>
-              </li>
+             
               <li class="nav-item">
                 <a class="nav-link active" href="">Profile</a>
               </li>
@@ -44,20 +42,24 @@
                 <a class="nav-link active" href="#">Administration portal</a>
               </li>
               {% endif %}
+              
+              <li class="nav-item">
+                <a class="nav-link active" href="{% url 'carts:cart_edit' %}">Order</a>
+              </li>
             </ul>
               <ul class="navbar-nav">
                 <li class="nav-item">
                   <a class="nav-link"  href="https://www.nbrb.by/statistics/rates/ratesdaily.asp">2.5 USD/BYN</a>
                 </li>
               </ul>
-            
-            <form action="{% url 'search_results' %}" method="get" class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-info me-4" type="submit">
-                <i class="bi bi-search">                  
-                </i>
-              </button>
-            </form>
+
+              <form action="{% url 'search_results' %}" method="get" class="d-flex" role="search">
+                <input name="q" type="text" class="form-control me-2" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-info me-4" type="submit">
+                  <i class="bi bi-search">                  
+                  </i>
+                </button>
+              </form>           
     
             <li style="list-style-type: none">
             {% if user.is_authenticated %}
@@ -67,6 +69,7 @@
       <a href="{% url 'home_page:login' %}" class="btn btn-outline-light">Log in</a></a>
       <a href="{% url 'home_page:register' %}" class="btn btn-outline-light">Sign up</a>
     {% endif %}
+    
             </li>
           </div>
         </div>

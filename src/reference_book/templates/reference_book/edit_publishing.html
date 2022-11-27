@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+{{ crup_name }} publishing 
+{% endblock title %}
+
+{% block content %}
+<div class="shadow p-3 mb-5 bg-body rounded">
+<div class="text-center">
+    <h1>{{ crup_name }} the publishing </h1>
+</div>
+</div>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <a href="{% url 'reference_book:publishing-list' %}" class="btn btn-secondary">Cancel</i></a>
+        <input type="submit" value="Save changes" class="btn btn-success">
+    </form>
+{% endblock content %}

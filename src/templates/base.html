@@ -26,22 +26,22 @@
               <a class="nav-link active" aria-current="page" href="/catalog">Catalog</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="#">Authors</a>
+              <a class="nav-link active" href="/refs/rb/">Authors</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="#">Genres</a>
+              <a class="nav-link active" href="/refs/rb-genre/">Genres</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="#">Publishing</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="#">Order</a>
-            </li>
+              <a class="nav-link active" href="/refs/rb-Publishing/">Publishing</a>
+            </li>            
             <li class="nav-item">
               <a class="nav-link active" href="#">Profile</a>
             </li>
             <li class="nav-item">
               <a class="nav-link active" href="#">Administration portal</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="{% url 'carts:cart_edit' %}">Order</a>
             </li>
           </ul>
             <ul class="navbar-nav">
@@ -49,14 +49,15 @@
                 <a class="nav-link"  href="https://www.nbrb.by/statistics/rates/ratesdaily.asp">2.5 USD/BYN</a>
               </li>
             </ul>
-          
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-info me-4" type="submit">
+
+            <form action="{% url 'search_results' %}" method="get" class="d-flex" role="search">
+              <input name="q" type="text" class="form-control me-2" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-info me-4" type="submit">
             <i class="bi bi-search">                  
             </i>
           </button>
-          </form>
+            </form>
+          
   
           <li style="list-style-type: none">
           {% if user.is_authenticated %}
@@ -66,36 +67,30 @@
     <a href="{% url 'home_page:login' %}" class="btn btn-outline-light">Log in</a></a>
     <a href="{% url 'home_page:register' %}" class="btn btn-outline-light">Sign up</a>
   {% endif %}
+  
           </li>
         </div>
       </div>
     </nav>
   </header>
 
-      <main class="flex-shrink-0">
-      <div class="container">
-      {% block body %}
-      No content 
-      {% endblock body %}  
-    
-          </div>
-      </main>
+      
   <main class="flex-shrink-0">
     <div class="container">
      {% block content %}
      No content 
      {% endblock content %}
     </div>
-    </main>    
+  </main>    
       <footer class="footer mt-auto py-3 bg-light">
         <div class="container">
           <span class="text-muted">{% block footer %}{% endblock footer %}</span>
         </div>
-      </footer>
-                 
+  </footer>
+               
       </body>
     
-    </html>
+  </html>
 
 
     

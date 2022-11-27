@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}   
+
+{% block title %}Your cart{% endblock %}
+
+{% block content %}
+    <div>
+        <div class="shadow p-3 mb-5 bg-body rounded">
+        <div class="text-center">
+        <h1>Your cart</h1>
+        </div>
+        </div>
+        <td><a href="{% url 'catalog:catalog' %}" class="btn btn-outline-secondary mb-3">Cancel</a></td>
+        <div class="shadow p-3 mb-5 bg-body rounded">
+        <form action="{% url 'carts:cart_update' %}" method="post">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Position</th>
+                    <th scope="col">Good</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Options</th>
+                </tr>
+            </thead>
+        </div>
+            {% for good_in_cart in object.goods.all %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ good_in_cart.book.name }}</td>
+                <td>
+                    <div class="mb-2">
+                        <input type="number" name="quantityforgood_{{good_in_cart.pk}}" min="1" step="1" class="form-control" value="{{good_in_cart.quantity}}">
+                    </div>
+                </td>
+                <td>{{ good_in_cart.total_price }}</td>
+                <td><form action="{% url 'carts:delete_good_in_cart' pk=good_in_cart.pk %}" method="post">{% csrf_token %}<button type="submit" class="btn btn-sm btn-outline-danger">Delete</button></form></td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="3">Total</td>
+                <td>{{ object.total_price_cart }}</td>
+                <td></td>
+            </tr>
+        </table>
+            <button type="submit" name="submit" class="btn btn-outline-primary" value="save_cart">Save changes</button>
+            {% if user.is_authenticated %}
+            <button type="submit" name="submit" class="btn btn-outline-success" value="create_order">Order</button>
+        </form>
+    </div>
+    {% else %}
+    <td><a href="{% url 'home_page:register' %}" class="btn btn-outline-success">Order</a></td>
+        {% endif %}
+</div>
+<div class="shadow p-3 mb-5 bg-body rounded">
+<h1>Create the order in one step:</h1>
+<form action="{% url 'order:create_order' %}" method="post">
+    {{ form|crispy }}
+    {% csrf_token %}
+    <button type="submit" class="btn btn-outline-success" >Create the order</button>
+</form>
+</div>
+{% endblock %}

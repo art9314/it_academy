@@ -10,6 +10,7 @@ from django.core.exceptions import ValidationError
 # Create your models here.
 
 class Books(models.Model):
+    
     name = models.CharField(
        max_length=60,
        verbose_name="Book name")
@@ -97,5 +98,8 @@ class Books(models.Model):
     def clean(self):
         if str(self.date_of_addition) > str(date.today()):
             raise ValidationError({'date_of_addition': 'Must not be later than today!'})
+            
+    def __str__(self):
+        return str(self.name)
         
     
