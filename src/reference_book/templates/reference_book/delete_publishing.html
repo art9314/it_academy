@@ -1,22 +1,22 @@
 {% extends "base.html" %}
 
 {% block title %}
-Delete publishing 
+Delete publishing
 {% endblock title %}
 
 {% block content %}
 <div class="shadow p-3 mb-5 bg-body rounded">
     <div class="text-center">
-        <h1>Are you sure that you want to delete the publisher?</h1><br>
+        <h1>Do you want to remove the publisher?</h1><br>
     </div>
     </div>
-    <p>Publishing  <b>"{{ object.publishing_name }}"</b> will be permanently deleted from the list.<br>
-        If you are agree please click delete button.</p><br>
-        Description: {{ object.description|default:"No description was provided" }}<br>
+    <p>Publishing  <b>"{{ object.publishing_name }}"</b> will be deleted.<br>
+        Please click delete button.</p><br>
+        Description: {{ object.description|default:"No description" }}<br>
         <br>
     <form action="" method="post">
         {% csrf_token %}
-        <a href="{% url 'reference_book:publishing_list' %}" class="btn btn-secondary">Cancel</i></a>
+        <a href="{% url 'reference_book:publishing-list' %}" class="btn btn-secondary">Cancel</i></a>
         <input type="submit" value="Delete" class="btn btn-danger">
     </form>
 {% endblock content %}

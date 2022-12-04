@@ -10,9 +10,11 @@ Product card view
     <h1><span style="color: rgb(0, 77, 128);">Product card created.</span></h1>
 </div>
 </div>
-    Card name: <b>"{{ object.name }}"</b><br>
+    Name: <b>"{{ object.name }}"</b><br>
     <br>
+    {% if perms.prod_card.delete_books%}
     <td><a href="{% url 'prod_card:prod_card_create' %}" class="btn btn-outline-success mb-3">Create product card</a></td>
+    {% endif %}
     <br>
-    <td><a href="{% url 'prod_card:prod_card_list' %}" class="btn btn-outline-success mb-3">Show the list of product cards</a></td>
+    <td><a href="{% url 'prod_card:prod_card_list' %}" class="btn btn-outline-success mb-3">Show the list of books</a></td>
 {% endblock content %}

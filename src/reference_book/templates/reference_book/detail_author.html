@@ -1,19 +1,21 @@
 {% extends "base.html" %}
 
 {% block title %}
-Author's preview
+Author's
 {% endblock title %}
 
 {% block content %}
 <div class="shadow p-3 mb-5 bg-body rounded">
     <div class="text-center">
-        <h1><span style="color: green;">Author successfully created!</span></h1>
+        <h1><span style="color: blue;">Author </span></h1>
     </div>
     </div>
     Author's data: <b>"{{ object.name }} {{object.surname}}"</b><br>
-    Description: {{ object.description|default:"No description was provided" }}<br>
+    Description: {{ object.description|default:"No description" }}<br>
     <br>
+    {% if perms.prod_card.view_books%}
     <td><a href="{% url 'reference_book:author-create' %}" class="btn btn-outline-success mb-3">Create a new author</a></td>
+    {% endif %}
     <br>
-    <td><a href="{% url 'reference_book:authors-list' %}" class="btn btn-outline-success mb-3">Show the list of authors</a></td>
+    <td><a href="{% url 'reference_book:author-list' %}" class="btn btn-outline-success mb-3">Show the list of authors</a></td>
 {% endblock content %}

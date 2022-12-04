@@ -49,4 +49,3 @@ class Publishing(models.Model):
 
 
 
-   

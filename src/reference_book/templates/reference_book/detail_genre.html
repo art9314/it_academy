@@ -1,19 +1,21 @@
 {% extends "base.html" %}
 
 {% block title %}
-Genre preview
+Genre
 {% endblock title %}
 
 {% block content %}
 <div class="shadow p-3 mb-5 bg-body rounded">
     <div class="text-center">
-        <h1><span style="color: green;">Genre successfully created!</span></h1>
+        <h1><span style="color: blue;">Genre</span></h1>
     </div>
     </div>
     Genre name: <b>"{{ object.genre_name }}"</b><br>
-    Description: {{ object.description|default:"No description was provided" }}<br>
+    Description: {{ object.description|default:"No description" }}<br>
     <br>
+    {% if perms.prod_card.view_books%}
     <td><a href="{% url 'reference_book:genre-create' %}" class="btn btn-outline-success mb-3">Create a new genre</a></td>
+    {% endif %}
     <br>
-    <td><a href="{% url 'reference_book:genres-list' %}" class="btn btn-outline-success mb-3">Show the list of genres</a></td>
+    <td><a href="{% url 'reference_book:genre-list' %}" class="btn btn-outline-success mb-3">Show the list of genres</a></td>
 {% endblock content %}

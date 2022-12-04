@@ -4,10 +4,9 @@ from catalog.models import AppUser
 from django.core.exceptions import ValidationError
 from django.db import models
 
+#Django Admin
 
-#Django Admin 
-
-class UserChangeForm(forms.ModelForm):    
+class UserChangeForm(forms.ModelForm):
     password = ReadOnlyPasswordHashField()
     class Meta:
         model = AppUser
@@ -27,7 +26,7 @@ class UserChangeForm(forms.ModelForm):
         )
 
 
-class MyUserCreationForm(forms.ModelForm):   
+class MyUserCreationForm(forms.ModelForm):
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
     password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
 
@@ -35,28 +34,28 @@ class MyUserCreationForm(forms.ModelForm):
         model = AppUser
         fields = (
             "username",
-            "email", 
-            "name", 
-            "surname", 
-            "phone", 
-            "country", 
-            "city", 
-            "index", 
-            "address", 
-            "reserve_address",  
-            "password1", 
-            "password2", 
+            "email",
+            "name",
+            "surname",
+            "phone",
+            "country",
+            "city",
+            "index",
+            "address",
+            "reserve_address",
+            "password1",
+            "password2",
             "additional_info"
             )
 
-    def clean_password2(self):        
+    def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
         password2 = self.cleaned_data.get("password2")
         if password1 and password2 and password1 != password2:
             raise ValidationError("Passwords is not the same")
         return password2
 
-    def save(self, commit=True):       
+    def save(self, commit=True):
         user = super().save(commit=False)
         user.set_password(self.cleaned_data["password1"])
         if commit:
@@ -76,31 +75,27 @@ class UserForm(UserCreationForm):
     address = forms.CharField(required=True, max_length=60)
     reserve_address = forms.CharField(required=False, max_length=60)
     additional_info = forms.CharField(required=False, max_length=150)
-    is_staff = models.BooleanField(default=True,)
-    is_active = models.BooleanField(default=True,)
-    is_superuser = models.BooleanField(default=True)
 
-   
+
 
     class Meta:
         model = AppUser
         fields = (
-            "username", 
-            "email", 
-            "name", 
-            "surname", 
-            "phone", 
-            "country", 
-            "city", 
-            "index", 
-            "address", 
-            "reserve_address",  
-            "password1", 
-            "password2", 
+
+            "username",
+            "email",
+            "name",
+            "surname",
+            "phone",
+            "country",
+            "city",
+            "index",
+            "address",
+            "reserve_address",
+            "password1",
+            "password2",
             "additional_info",
-             'is_staff',
-              'is_active',
-              'is_superuser',     
+
             )
 
     def save(self, commit=True):
@@ -114,14 +109,10 @@ class UserForm(UserCreationForm):
         user.address = self.cleaned_data['address']
         user.reserve_address = self.cleaned_data['reserve_address']
         user.additional_info = self.cleaned_data['additional_info']
-        user.is_staff = self.cleaned_data['is_staff']
-        user.is_active = self.cleaned_data['is_active']
-        user.is_superuser = self.cleaned_data['is_superuser']
 
-       
 
-        
-       
+
         if commit:
             user.save()
+
         return user

@@ -1,17 +1,17 @@
 {% extends "base.html" %}
 
 {% block title %}
-Series preview
+Series
 {% endblock title %}
 
 {% block content %}
 <div class="shadow p-3 mb-5 bg-body rounded">
     <div class="text-center">
-        <h1><span style="color: green;">Book's series successfully created!</span></h1>
+        <h1><span style="color: blue;">Book's series</span></h1>
     </div>
     </div>
     Series name: <b>"{{ object.book_series }}"</b><br>
-    Description: {{ object.description|default:"No description was provided" }}<br>
+    Description: {{ object.description|default:"No description" }}<br>
     <br>
     <td><a href="{% url 'reference_book:series-create' %}" class="btn btn-outline-success mb-3">Create a new series</a></td>
     <br>

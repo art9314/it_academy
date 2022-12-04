@@ -10,8 +10,8 @@
     <script src="{% static 'bs/js/bootstrap.min.js' %}"></script>
     <link href="{% static 'bs/css/custom.css' %}" rel="stylesheet">
 <body>
-  
-  
+
+
     <header>
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="container-fluid">
@@ -24,25 +24,24 @@
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="/catalog">Catalog</a>
               </li>
+
               <li class="nav-item">
                 <a class="nav-link active" href="/refs/rb/">Authors</a>
               </li>
+
               <li class="nav-item">
                 <a class="nav-link active" href="/refs/rb-genre/">Genres</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link active" href="/refs/rb-Publishing/">Publishing</a>
               </li>
-             
+
+              {% if perms.prod_card.delete_books%}
               <li class="nav-item">
-                <a class="nav-link active" href="">Profile</a>
-              </li>
-              {% if perms.product_card.view_book%}
-              <li class="nav-item">
-                <a class="nav-link active" href="#">Administration portal</a>
+                <a class="nav-link active" href="/admin/">Administration portal</a>
               </li>
               {% endif %}
-              
+
               <li class="nav-item">
                 <a class="nav-link active" href="{% url 'carts:cart_edit' %}">Order</a>
               </li>
@@ -56,11 +55,11 @@
               <form action="{% url 'search_results' %}" method="get" class="d-flex" role="search">
                 <input name="q" type="text" class="form-control me-2" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-info me-4" type="submit">
-                  <i class="bi bi-search">                  
+                  <i class="bi bi-search">
                   </i>
                 </button>
-              </form>           
-    
+              </form>
+
             <li style="list-style-type: none">
             {% if user.is_authenticated %}
       <span class="navbar-text mr-2">{{ user }}</span>
@@ -69,13 +68,13 @@
       <a href="{% url 'home_page:login' %}" class="btn btn-outline-light">Log in</a></a>
       <a href="{% url 'home_page:register' %}" class="btn btn-outline-light">Sign up</a>
     {% endif %}
-    
+
             </li>
           </div>
         </div>
       </nav>
     </header>
-  
+
   <main>
     <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-indicators">
@@ -84,15 +83,15 @@
       </div>
       <div class="carousel-inner">
         <div class="carousel-item active">
-            <image src="https://st.depositphotos.com/1003829/2984/i/450/depositphotos_29843121-stock-photo-opened-magic-book-with-magic.jpg" alt="image books" width="100%" height="100%" >
+            <image src="https://st.depositphotos.com/1003829/2984/i/450/depositphotos_29843121-stock-photo-opened-magic-book-with-magic.jpg" alt="image books" width="100%" height="80%" >
             <div class="container">
             <div class="carousel-caption text-start">
-              <h1>Books for every taste only with us</h1>        
+              <h1>Books for every taste only with us</h1>
             </div>
           </div>
         </div>
         <div class="carousel-item">
-            <image src="https://static8.depositphotos.com/1170638/833/i/600/depositphotos_8335286-stock-photo-library-of-old-books.jpg" alt="image books" width="100%" height="100%">  
+            <image src="https://static8.depositphotos.com/1170638/833/i/600/depositphotos_8335286-stock-photo-library-of-old-books.jpg" alt="image books" width="100%" height="80%">
           <div class="container">
             <div class="carousel-caption">
               <p><a class="btn btn-dark" href="catalog/">View catalog</a></p>
@@ -109,9 +108,9 @@
         <span class="visually-hidden">Next</span>
       </button>
     </div>
-  
-    
-    <div class="container marketing">       
+
+
+    <div class="container marketing">
       <div class="row">
         <div class="col-lg-4">
           <h2 class="fw-normal">Оскар Уайльд</h2>
@@ -127,27 +126,27 @@
           <h2 class="fw-normal">Джордж Оруэлл</h2>
           <p>Его работы отличаются простым стилем изложения, критикой тоталитаризма и поддержкой демократического социализма.</p>
           <p><a class="btn btn-dark" href="https://ru.wikipedia.org/wiki/%D0%94%D0%B6%D0%BE%D1%80%D0%B4%D0%B6_%D0%9E%D1%80%D1%83%D1%8D%D0%BB%D0%BB#:~:text=%D0%95%D0%B3%D0%BE%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B%20%D0%BE%D1%82%D0%BB%D0%B8%D1%87%D0%B0%D1%8E%D1%82%D1%81%D1%8F%20%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%8B%D0%BC%20%D1%81%D1%82%D0%B8%D0%BB%D0%B5%D0%BC,%D1%82%D0%BE%D1%82%D0%B0%D0%BB%D0%B8%D1%82%D0%B0%D1%80%D0%B8%D0%B7%D0%BC%D0%B0%20%D0%B8%20%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%BE%D0%B9%20%D0%B4%D0%B5%D0%BC%D0%BE%D0%BA%D1%80%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B3%D0%BE%20%D1%81%D0%BE%D1%86%D0%B8%D0%B0%D0%BB%D0%B8%D0%B7%D0%BC%D0%B0.&text=%D0%A1%D0%B0%D0%BC%D1%8B%D0%B5%20%D0%B8%D0%B7%D0%B2%D0%B5%D1%81%D1%82%D0%BD%D1%8B%D0%B5%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B%20%D0%9E%D1%80%D1%83%D1%8D%D0%BB%D0%BB%D0%B0%20%D0%B2%D0%BA%D0%BB%D1%8E%D1%87%D0%B0%D1%8E%D1%82,%C2%AB1984%C2%BB%20(1948).">View details &raquo;</a></p>
-        </div>    
-  
-  
+        </div>
+
+
       <!-- cards -->
-  
+
       <div class="card" style="width: 18rem;">
         <img src="{{ books.logo.url }}" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">Оскар Уайльд. "Саломея"</h5>
           <p class="card-text">В основе трагедии лежит история Саломеи, персонажа Нового Завета (имя в Библии не названо, впервые оно встречается у Иосифа Флавия).</p>
-          <a href="#" class="btn btn-primary">Buy</a>
+          <a href="{% url 'catalog:book_detail' pk=4 %}" class="btn btn-primary">Buy</a>
         </div>
       </div>
-      
-  
+
+
       <div class="card" style="width: 18rem;">
         <img src="{{ books1.logo.url }}" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">Эрих Мария Ремарк. "Три товарища"</h5>
           <p class="card-text">Действие происходит в Германии с марта 1928 по март 1929 года. Три товарища — Робби, Отто Кёстер и Готтфрид Ленц содержат небольшую авторемонтную мастерскую.</p>
-          <a href="#" class="btn btn-primary">Buy</a>
+          <a href="{% url 'catalog:book_detail' pk=2 %}" class="btn btn-primary">Buy</a>
         </div>
       </div>
 
@@ -156,21 +155,21 @@
   <div class="card-body">
     <h5 class="card-title">Джордж Оруэлл. "1984"</h5>
     <p class="card-text">Роман «1984» считается одним из образцов антиутопии.</p>
-    <a href="#" class="btn btn-primary">Buy</a>
+    <a href="{% url 'catalog:book_detail' pk=1 %}" class="btn btn-primary">Buy</a>
   </div>
 </div>
 
-     
+
     <footer class="py-3 my-4">
         <div class="shadow p-3 mb-5 bg-body rounded">
         <div class="container">
-            
+
           <p class="text-center text-muted">&copy; 2022 BSHOP, Inc</p>
         </div>
         </div>
     </footer>
-  </main> 
+  </main>
+<script src={% static "bs/js/bootstrap.bundle.min.js" %}> </script>
 
-        
 </body>
 </html>

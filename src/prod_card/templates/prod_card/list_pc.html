@@ -7,43 +7,49 @@ List product cards
 {% block content %}
     <div class="shadow p-3 mb-5 bg-body rounded">
     <div class="text-center">
-        <h1>List product cards</h1>
+        <h1>List of books</h1>
     </div>
     </div>
+    {% if perms.prod_card.delete_books%}
         <td><a href="{% url 'prod_card:prod_card_create' %}" class="btn btn-outline-success mb-3">Create product card</a></td>
+        {% endif %}
         <div class="shadow p-3 mb-5 bg-body rounded">
         <div class="table-responsive">
         <div class="text-center">
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
-                  <th scope="col">Book name</th>                  
+                  <th scope="col">Book name</th>
                   <th scope="col">Price</th>
                   <th scope="col">Publisher</th>
                   <th scope="col">ISBN</th>
-                  <th scope="col">Books available</th>                  
+                  <th scope="col">Books available</th>
+                  {% if perms.prod_card.delete_books%}
                   <th scope="col">Modified</th>
                   <th scope="col">Options</th>
+                  {% endif %}
                 </tr>
               </thead>
             <tbody>
         {% for obj in object_list %}
         <tr>
-            <td>{{ obj.name }}</td>            
+            <td><a href="{% url 'catalog:book_detail' pk=obj.pk %}">{{ obj.name }}</a></td>
             <td>{{ obj.price }}</td>
-            <td>{{ obj.publishing}}</td>
+            <td>{{ obj.publishing }}</td>
             <td>{{ obj.isbn }}</td>
-            <td>{{ obj.available_books }}</td>            
+            <td>{{ obj.available_books }}</td>
+            {% if perms.prod_card.delete_books%}
             <td>{{ obj.modification_date }}</td>
             <td><a href="{% url 'prod_card:prod_card_update' pk=obj.pk %}" class="btn btn-success"><i class="bi bi-pencil-fill"></i></i></a>
                 <a href="{% url 'prod_card:prod_card_delete' pk=obj.pk %}" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#id{{obj.pk}}"><i class="bi bi-x-lg"></i></a></td>
+                {% endif %}
         </tr>
-                
+
 <div class="modal fade" id="id{{obj.pk}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Delete this product card?</h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Delete this book?</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -65,5 +71,5 @@ List product cards
         </div>
         {% endfor %}
         </table>
-        
+
 {% endblock content %}

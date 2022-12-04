@@ -32,12 +32,12 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Are you sure that you want to delete the series?</h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Do you want to remove the series?</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            Series <b>"{{ obj.book_series }}"</b> will be permanently deleted from the list.
-            If you are agree please click delete button.<br>
+            Series <b>"{{ obj.book_series }}"</b> will be deleted.
+            Please click delete button.<br>
             <br>
             <form action="{% url 'reference_book:series-delete' pk=obj.pk %}" method="post">
                 {% csrf_token %}

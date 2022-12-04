@@ -40,11 +40,11 @@
                         <div class="modal-dialog">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h1 class="modal-title fs-5" id="exampleModalLabel">Are you sure that you want to delete the book from the cart?</h1>
+                              <h1 class="modal-title fs-5" id="exampleModalLabel">Do you want to remove the book from the cart?</h1>
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                Book <b>"{{ good_in_cart.book.name }}"</b> - <b>{{ good_in_cart.quantity }} pcs.</b> will be permanently deleted from the list.
+                                Book <b>"{{ good_in_cart.book.name }}"</b> - <b>{{ good_in_cart.quantity }} pcs.</b> will be deleted.
                                 <br>
                                 <form action="{% url 'carts:delete_good_in_cart' pk=good_in_cart.pk %}" method="post">
                                     {% csrf_token %}

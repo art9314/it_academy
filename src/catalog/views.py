@@ -29,7 +29,7 @@ class CatalogView(View):
             }
         )
 
-class BookDetail(generic.DetailView):    
+class BookDetail(generic.DetailView):
     def get(self, request, *args, **kwargs):
         book = get_object_or_404(Books, pk=kwargs['pk'])
         last_posts = Books.objects.all().order_by('-id')[:3]
@@ -38,9 +38,9 @@ class BookDetail(generic.DetailView):
             'book': book,
             'last_posts': last_posts,
             'comment_form': comment_form,
-        })    
+        })
 
-    
+
     def post(self, request, *args, **kwargs):
         comment_form = CommentForm(request.POST)
         if comment_form.is_valid():
@@ -59,9 +59,9 @@ class SearchResultView(View):
     def get(self, request, *args, **kwargs):
         query = self.request.GET.get('q')
         results = ''
-        if query:            
+        if query:
             results = Books.objects.filter(
-                Q(author__name__icontains=query) | Q(name__icontains=query) | Q(author__surname__icontains=query) | Q(genre__name__icontains=query) | Q(series__name__icontains=query)
+                Q(author__name__icontains=query) | Q(name__icontains=query) | Q(author__surname__icontains=query) | Q(genre__genre_name__icontains=query) | Q(series__book_series__icontains=query)
             ).distinct()
         paginator = Paginator(results, 12)
         page_number = request.GET.get('page')

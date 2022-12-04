@@ -7,16 +7,16 @@ Delete genre
 {% block content %}
 <div class="shadow p-3 mb-5 bg-body rounded">
     <div class="text-center">
-        <h1>Are you sure that you want to delete the genre?</h1><br>
+        <h1>Do you want to remove the genre??</h1><br>
     </div>
     </div>
-    <p>Genre <b>"{{ object.genre_name }}"</b> will be permanently deleted from the list.<br>
-        If you are agree please click delete button.</p><br>
-        Description: {{ object.description|default:"No description was provided" }}<br>
+    <p>Genre <b>"{{ object.genre_name }}"</b> will be deleted.<br>
+        Please click delete button.</p><br>
+        Description: {{ object.description|default:"No description" }}<br>
         <br>
     <form action="" method="post">
         {% csrf_token %}
-        <a href="{% url 'reference_book:genres-list' %}" class="btn btn-secondary">Cancel</i></a>
+        <a href="{% url 'reference_book:genre-list' %}" class="btn btn-secondary">Cancel</i></a>
         <input type="submit" value="Delete" class="btn btn-danger">
     </form>
 {% endblock content %}

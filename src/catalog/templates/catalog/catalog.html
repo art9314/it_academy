@@ -13,7 +13,7 @@
 
 </head>
 <body>
-  
+
 <header>
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
@@ -26,23 +26,21 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/catalog">Catalog</a>
           </li>
+
           <li class="nav-item">
             <a class="nav-link active" href="/refs/rb/">Authors</a>
           </li>
+
           <li class="nav-item">
             <a class="nav-link active" href="/refs/rb-genre/">Genres</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" href="/refs/rb-Publishing/">Publishing</a>
           </li>
-          
+
+         {% if perms.prod_card.delete_books%}
           <li class="nav-item">
-            <a class="nav-link active" href="#">Profile</a>
-          </li>
-          
-          {% if perms.product_card.view_book%}
-          <li class="nav-item">
-            <a class="nav-link active" href="#">Administration portal</a>
+            <a class="nav-link active" href="/admin/">Administration portal</a>
           </li>
           {% endif %}
           <li class="nav-item">
@@ -54,11 +52,11 @@
               <a class="nav-link"  href="https://www.nbrb.by/statistics/rates/ratesdaily.asp">2.5 USD/BYN</a>
             </li>
           </ul>
-        
+
           <form action="{% url 'search_results' %}" method="get" class="d-flex" role="search">
             <input name="q" type="text" class="form-control me-2" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-info me-4" type="submit">
-              <i class="bi bi-search">                  
+              <i class="bi bi-search">
               </i>
             </button>
           </form>
@@ -66,7 +64,9 @@
         <li style="list-style-type: none">
         {% if user.is_authenticated %}
   <span class="navbar-text mr-2">{{ user }}</span>
-  <a href="/logout" class="btn btn-outline-light"><i class="bi bi-door-closed"></i></a>
+  <a href="/logout" class="btn btn-outline-light"><i class="bi bi-box-arrow-right">
+
+  </i></a>
 {% else %}
   <a href="{% url 'home_page:login' %}" class="btn btn-outline-light">Log in</i></a>
   <a href="{% url 'home_page:register' %}" class="btn btn-outline-light">Sign up</a>
@@ -83,7 +83,7 @@
   <div class="row py-lg-5">
     <div class="col-lg-6 col-md-8 mx-auto">
       <h1 class="fw-light">Happy choice!</h1>
-      
+
     </div>
   </div>
 </section>
@@ -100,7 +100,7 @@
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
                 <a href="{% url 'catalog:book_detail' pk=obj.pk %}"  type="submit" class="btn btn-sm btn-outline-secondary">View</a>
-                {% if perms.product_card.view_book%}
+                {% if perms.prod_card.delete_books%}
                 <a href="{% url 'prod_card:prod_card_update' pk=obj.pk %}" type="button" class="btn btn-sm btn-outline-secondary">Edit</a>
                 {% endif %}
               </div>
@@ -114,7 +114,7 @@
 
 <footer class="py-3 my-4">
   <div class="shadow p-3 mb-5 bg-body rounded">
-  <div class="container">     
+  <div class="container">
     <p class="text-center text-muted">&copy; 2022 BSHOP, Inc</p>
   </div>
   </div>

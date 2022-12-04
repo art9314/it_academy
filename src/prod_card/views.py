@@ -9,14 +9,14 @@ class ShowProdCardList(LoginRequiredMixin, PermissionRequiredMixin,generic.ListV
     model = models.Books
     template_name = 'prod_card/list_pc.html'
     login_url = 'home_page:login'
-    permission_required = 'product_card.view_book'
+    permission_required = 'prod_card.view_books'
 
 
 class ShowProdCard(LoginRequiredMixin, PermissionRequiredMixin,generic.DetailView):
     model = models.Books
     template_name = 'prod_card/detail_pc.html'
     login_url = 'home_page:login'
-    permission_required = 'product_card.view_book'
+    permission_required = 'prod_card.view_books'
 
 
 class CreateProdCard(LoginRequiredMixin, PermissionRequiredMixin,generic.CreateView):
@@ -24,7 +24,7 @@ class CreateProdCard(LoginRequiredMixin, PermissionRequiredMixin,generic.CreateV
     form_class = forms.ProdCardForm
     template_name = 'prod_card/edit_pc.html'
     login_url = 'home_page:login'
-    permission_required = 'product_card.add_book'
+    permission_required = 'prod_card.add_books'
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
@@ -37,7 +37,7 @@ class UpdateProdCard(LoginRequiredMixin, PermissionRequiredMixin,generic.UpdateV
     form_class = forms.ProdCardForm
     template_name = 'prod_card/edit_pc.html'
     login_url = 'home_page:login'
-    permission_required = 'product_card.change_book'
+    permission_required = 'prod_card.change_books'
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
@@ -49,7 +49,7 @@ class DeleteProdCard(LoginRequiredMixin, PermissionRequiredMixin,generic.DeleteV
     model = models.Books
     template_name = 'prod_card/delete_pc.html'
     login_url = 'home_page:login'
-    permission_required = 'product_card.delete_book'
+    permission_required = 'prod_card.delete_books'
 
     def get_success_url(self):
         return reverse_lazy('prod_card:prod_card_list')

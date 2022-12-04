@@ -30,25 +30,27 @@
         <h4 class="featurette-heading fw-normal lh-1" >Books available:<span class="text-muted"><em> {{ book.available_books }} pcs</h4></em>
         <h4 class="featurette-heading fw-normal lh-1" >Available for purchase:<span class="text-muted"><em> {{ book.activity }}</h4></em>
         <h4 class="featurette-heading fw-normal lh-1" >Rating:<span class="text-muted"><em> {{ book.rating }}</h4></em>
-        
+
         <br>
         <h5 class="featurette-heading fw-normal lh-1" ><span class="text-muted"> {{ book.description }}</h5>
       </div>
       <div class="col-md-5 order-md-1">
-        <img src="{{ book.logo.url }}" width="420" height="500" border="1">
+        <img src="{{ book.logo.url }}" width="350" height="500" >
       </div>
     </div>
+    {% if perms.prod_card.delete_books%}
     <h6 class="featurette-heading fw-normal lh-1" >Changed:<span class="text-muted"><em> {{ book.modification_date }}</h6></em><br>
+     {% endif %}
       <form action="{%url 'carts:cart_edit' %}" method="get">
         {% csrf_token %}
       <td><a href="{% url 'catalog:catalog' %}" class="btn btn-outline-secondary mb-3">Cancel</a></td> {% comment %}onclick="history.go(-1); return false; {% endcomment %}
       <td><button type="submit" class="btn btn-outline-success mb-3">Add to cart</button></td>
       <input type="hidden" name="book_pk" value="{{ book.pk }}">
-      </form>    
+      </form>
     <hr>
     </div>
     <div class="card my-4">
-      <h5 class="card-header">Leave the comment:</h5>
+      <h5 class="card-header">Commentary:</h5>
       {% if user.is_authenticated %}
       <div class="card-body">
           <form method="post">

@@ -1,3 +1,4 @@
+
 from django.shortcuts import render, redirect
 from django.views import generic
 from django.http import HttpResponseRedirect
@@ -33,11 +34,11 @@ def login_request(request):
     form = AuthenticationForm()
     return render(request=request, template_name="home_page/login.html", context={"login_form":form})
 
-#Create 
+#Create
 def register_request(request):
     if request.method == "POST":
         form = UserForm(request.POST)
-        
+
         if form.is_valid():
             user = form.save()
             login(request, user)
@@ -54,24 +55,27 @@ def register_request(request):
             messages.error(request, "Registration failed.Enter correct data.")
     form = UserForm()
     return render (request=request, template_name="home_page/register.html", context={"register_form":form})
-       
 
-def logout_request(request):    
+
+def logout_request(request):
 	logout(request)
-	messages.info(request, "Logged out.") 
+	messages.info(request, "Logged out.")
 	return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 class HomePage(generic.TemplateView):
     template_name = 'home_page/home_page.html'
 
     def get_context_data(self, *args, **kwargs):
-        context = super().get_context_data(*args, **kwargs)               
-        #context['books'] = Books.objects.get(pk=4)
+
+        context = super().get_context_data(*args, **kwargs)
+        context['books'] = Books.objects.get(pk=3)
         context['books1'] = Books.objects.get(pk=2)
         context['books2'] = Books.objects.get(pk=1)
+
         return context
- 
- 
+
+
+
 
 
 
