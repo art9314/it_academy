@@ -1,7 +1,7 @@
 import datetime
 from django.views import generic
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
-from . import models,forms 
+from . import models,forms
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse_lazy
@@ -12,20 +12,20 @@ class ShowAuthors (LoginRequiredMixin, PermissionRequiredMixin,generic.ListView)
     model = models.Author
     template_name = 'reference_book/list_author.html'
     login_url = 'home_page:login'
-    permission_required = 'reference.view_author'
-    
+    permission_required = 'reference_book.view_author'
+
 class ShowAuthor (LoginRequiredMixin, PermissionRequiredMixin,generic.DetailView):
     model = models.Author
     template_name = 'reference_book/detail_author.html'
     login_url = 'home_page:login'
-    permission_required = 'reference.view_author'
+    permission_required = 'reference_book.view_author'
 
 class CreateAuthor (LoginRequiredMixin, PermissionRequiredMixin,generic.CreateView):
     model = models.Author
     form_class = forms.AuthorForm
-    template_name = 'reference_book/edit_author.html' 
+    template_name = 'reference_book/edit_author.html'
     login_url = 'home_page:login'
-    permission_required = 'reference.add_author' 
+    permission_required = 'reference_book.add_author'
     def get_context_data(self, *args, **kwargs):
             context = super().get_context_data(*args,**kwargs)
             context['crup_name'] = 'Create'
@@ -36,7 +36,7 @@ class UpdateAuthor (LoginRequiredMixin, PermissionRequiredMixin,generic.UpdateVi
     form_class = forms.AuthorForm
     template_name = 'reference_book/edit_author.html'
     login_url = 'home_page:login'
-    permission_required = 'reference.change_author'
+    permission_required = 'reference_book.change_author'
     def get_context_data(self, *args, **kwargs):
             context = super().get_context_data(*args,**kwargs)
             context['crup_name'] = 'Update'
@@ -46,39 +46,39 @@ class DeleteAuthor (LoginRequiredMixin, PermissionRequiredMixin,generic.DeleteVi
     model=models.Author
     template_name = 'reference_book/delete_author.html'
     login_url = 'home_page:login'
-    permission_required = 'reference.delete_author'
+    permission_required = 'reference_book.delete_author'
     def get_success_url(self):
-        return reverse_lazy('reference:authors_list')
+        return reverse_lazy('reference_book:authors_list')
 
 class ShowSerie(LoginRequiredMixin, PermissionRequiredMixin,generic.ListView):
     model = models.Series
     template_name = 'reference_book/list_series.html'
     login_url = 'home_page:login'
-    permission_required = 'reference.view_series'
+    permission_required = 'reference_book.view_series'
 
 class ShowSeries (LoginRequiredMixin, PermissionRequiredMixin,generic.DetailView):
     model = models.Series
     template_name = 'reference_book/detail_series.html'
     login_url = 'home_page:login'
-    permission_required = 'reference.view_series'
+    permission_required = 'reference_book.view_series'
 
 class CreateSeries (LoginRequiredMixin, PermissionRequiredMixin,generic.CreateView):
     model = models.Series
     form_class = forms.SeriesForm
     template_name = 'reference_book/edit_series.html'
     login_url = 'home_page:login'
-    permission_required = 'reference.add_series'
+    permission_required = 'reference_book.add_series'
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args,**kwargs)
         context['crup_name'] = 'Create'
-        return context  
+        return context
 
 class UpdateSeries (LoginRequiredMixin, PermissionRequiredMixin,generic.UpdateView):
     model=models.Series
     form_class = forms.SeriesForm
     template_name = 'reference_book/edit_series.html'
     login_url = 'home_page:login'
-    permission_required = 'reference.change_series'
+    permission_required = 'reference_book.change_series'
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args,**kwargs)
         context['crup_name'] = 'Update'
@@ -89,29 +89,29 @@ class DeleteSeries(LoginRequiredMixin, PermissionRequiredMixin,generic.DeleteVie
     form_class = forms.SeriesForm
     template_name = 'reference_book/delete_series.html'
     login_url = 'home_page:login'
-    permission_required = 'reference.delete_series'
+    permission_required = 'reference_book.delete_series'
     def get_success_url(self):
-        return reverse_lazy('reference:series_list')
+        return reverse_lazy('reference_book:series_list')
 
 
 class ShowGenres(LoginRequiredMixin, PermissionRequiredMixin,generic.ListView):
     model = models.Genre
     template_name = 'reference_book/list_genre.html'
     login_url = 'home_page:login'
-    permission_required = 'reference.view_genre'
+    permission_required = 'reference_book.view_genre'
 
 class ShowGenre (LoginRequiredMixin, PermissionRequiredMixin,generic.DetailView):
     model = models.Genre
     template_name = 'reference_book/detail_genre.html'
     login_url = 'home_page:login'
-    permission_required = 'reference.view_genre'
+    permission_required = 'reference_book.view_genre'
 
 class CreateGenre (LoginRequiredMixin, PermissionRequiredMixin,generic.CreateView):
     model = models.Genre
     form_class = forms.GenreForm
-    template_name = 'reference_book/edit_genre.html'  
+    template_name = 'reference_book/edit_genre.html'
     login_url = 'home_page:login'
-    permission_required = 'reference.add_genre'
+    permission_required = 'reference_book.add_genre'
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args,**kwargs)
         context['crup_name'] = 'Create'
@@ -122,7 +122,7 @@ class UpdateGenre (LoginRequiredMixin, PermissionRequiredMixin,generic.UpdateVie
     form_class = forms.GenreForm
     template_name = 'reference_book/edit_genre.html'
     login_url = 'home_page:login'
-    permission_required = 'reference.change_genre'
+    permission_required = 'reference_book.change_genre'
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args,**kwargs)
         context['crup_name'] = 'Update'
@@ -133,28 +133,28 @@ class DeleteGenre(LoginRequiredMixin, PermissionRequiredMixin,generic.DeleteView
     form_class = forms.GenreForm
     template_name = 'reference_book/delete_genre.html'
     login_url = 'home_page:login'
-    permission_required = 'reference.delete_genre'
+    permission_required = 'reference_book.delete_genre'
     def get_success_url(self):
-        return reverse_lazy('reference:genres_list')
+        return reverse_lazy('reference_book:genres_list')
 
 class ShowPublishings(LoginRequiredMixin, PermissionRequiredMixin,generic.ListView):
     model = models.Publishing
     template_name = 'reference_book/list_publishing.html'
     login_url = 'home_page:login'
-    permission_required = 'reference.view_publishing'
+    permission_required = 'reference_book.view_publishing'
 
 class ShowPublishing (LoginRequiredMixin, PermissionRequiredMixin,generic.DetailView):
     model = models.Publishing
     template_name = 'reference_book/detail_publishing.html'
     login_url = 'home_page:login'
-    permission_required = 'reference.view_publishing'
+    permission_required = 'reference_book.view_publishing'
 
 class CreatePublishing (LoginRequiredMixin, PermissionRequiredMixin,generic.CreateView):
     model = models.Publishing
     form_class = forms.PublishingForm
-    template_name = 'reference_book/edit_publishing.html' 
+    template_name = 'reference_book/edit_publishing.html'
     login_url = 'home_page:login'
-    permission_required = 'reference.add_publishing'
+    permission_required = 'reference_book.add_publishing'
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args,**kwargs)
         context['crup_name'] = 'Create'
@@ -165,7 +165,7 @@ class UpdatePublishing (LoginRequiredMixin, PermissionRequiredMixin,generic.Upda
     form_class = forms.PublishingForm
     template_name = 'reference_book/edit_publishing.html'
     login_url = 'home_page:login'
-    permission_required = 'reference.change_publishing'
+    permission_required = 'reference_book.change_publishing'
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args,**kwargs)
         context['crup_name'] = 'Update'
@@ -176,7 +176,7 @@ class DeletePublishing(LoginRequiredMixin, PermissionRequiredMixin,generic.Delet
     form_class = forms.PublishingForm
     template_name = 'reference_book/delete_publishing.html'
     login_url = 'home_page:login'
-    permission_required = 'reference.delete_publishing'
+    permission_required = 'reference_book.delete_publishing'
 
     def get_success_url(self):
-        return reverse_lazy('reference:publish_list')
+        return reverse_lazy('reference_book:publishing_list')

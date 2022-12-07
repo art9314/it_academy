@@ -38,7 +38,7 @@
 
               {% if perms.prod_card.delete_books%}
               <li class="nav-item">
-                <a class="nav-link active" href="/admin/">Administration portal</a>
+                <a class="nav-link active" href="{% url 'admin_portal:admin_portal' %}">Administration portal</a>
               </li>
               {% endif %}
 

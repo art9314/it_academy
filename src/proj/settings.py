@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'home_page',
     "catalog",
     "carts",
-    "order"
+    "order",
+    'admin_portal',
 
 ]
 

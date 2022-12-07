@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}
+Administrative portal
+{% endblock title %}
+
+{% block content %}
+<div class="shadow p-3 mb-5 bg-body rounded">
+    <div class="text-center">
+        <h2>Administration portal, {{ user }}!</h2>
+    </div>
+</div>
+<ol  class="list-group list-group-numbered">
+
+    <li class="list-group-item"><a href="{%url 'reference_book:author-list'%}">Edit or delete list of authors</a></li>
+    <li class="list-group-item"><a href="{%url 'reference_book:genre-list'%}">Edit or delete list of genres</a></li>
+    <li class="list-group-item"><a href="{%url 'reference_book:series-list'%}">Edit or delete list of series</a></li>
+    <li class="list-group-item"><a href="{%url 'reference_book:publishing-list'%}">Edit or delete list of publishings</a></li>
+    <li class="list-group-item"><a href="{%url 'prod_card:prod_card_list'%}">Edit or delete list of books</a></li>
+  </ol>
+  
+</div>
+
+  
+{% endblock content %}

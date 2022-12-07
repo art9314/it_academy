@@ -23,7 +23,7 @@
             <tbody>
         {% for obj in object_list %}
         <tr>
-            <td>{{ obj.book_series }}</td>
+            <td><a href="{% url 'prod_card:prod_card_detail' pk=obj.pk %}">{{ obj.book_series }}</a></td>
             <td><a href="{% url 'reference_book:series-update' pk=obj.pk %}" class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i></a>
                 <a href="{% url 'reference_book:series-delete' pk=obj.pk %}" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#id{{obj.pk}}"><i class="bi bi-x-lg"></i></a></td>
         </tr>
